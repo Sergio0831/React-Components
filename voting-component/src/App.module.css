@@ -1,3 +1,37 @@
-.container {
-	background-color: var(--clr-bg);
+.voting-container {
+	display: grid;
+	place-items: center;
+	row-gap: 2.6rem;
+}
+
+.voting-body {
+	display: grid;
+	place-items: center;
+	row-gap: 1.6rem;
+}
+
+.voting-title {
+	font-size: var(--fs-large);
+	font-weight: var(--fw-bold);
+	color: var(--clr-text);
+}
+
+.voting-btns {
+	display: flex;
+	column-gap: 1rem;
+}
+
+.muted {
+	color: var(--clr-muted);
+}
+
+.voting-footer a {
+	color: var(--clr-accent);
+	text-decoration: none;
+	outline: none;
+	border: 2px solid transparent;
+}
+
+.voting-footer a:focus-visible {
+	border-color: var(--clr-accent);
 }

@@ -1,0 +1,25 @@
+.voting-btn {
+	padding: 1rem 2rem;
+	background-color: transparent;
+	color: var(--clr-text);
+	border: 2px solid var(--clr-light);
+	border-radius: 4px;
+	transition: border-color 0.2s cubic-bezier(0.075, 0.82, 0.165, 1),
+		color 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
+	cursor: pointer;
+}
+
+.voting-btn:focus-visible {
+	outline: none;
+	border: 2px solid var(--clr-accent);
+}
+
+.voting-btn[aria-pressed='true'] {
+	border: 2px solid var(--clr-accent);
+	color: var(--clr-accent);
+}
+
+.voting-btn:hover {
+	border: 2px solid var(--clr-accent);
+	color: var(--clr-accent);
+}
