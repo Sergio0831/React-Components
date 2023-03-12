@@ -1,4 +1,4 @@
-import { MouseEventHandler, useState } from 'react';
+import { useRef, useState } from 'react';
 import VotingBtn from './components/VotingBtn';
 import { ThumbsDown, ThumbsUp } from './icons';
 import styles from './App.module.css';
@@ -9,6 +9,9 @@ function App() {
 
 	const [isLiked, setIsLiked] = useState<boolean>(false);
 	const [isDisliked, setIsDisliked] = useState<boolean>(false);
+
+	const likeBtn = useRef<HTMLButtonElement>(null);
+	const dislikeBtn = useRef<HTMLButtonElement>(null);
 
 	const handleOnClick = (e: React.MouseEvent<HTMLButtonElement>) => {
 		e.preventDefault();
@@ -35,6 +38,15 @@ function App() {
 		}
 	};
 
+	const handleOnKeyPress = (e: React.KeyboardEvent<HTMLButtonElement>) => {
+		if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+			e.preventDefault();
+			e.currentTarget.getAttribute('aria-label')?.includes('dislike')
+				? likeBtn.current?.focus()
+				: dislikeBtn.current?.focus();
+		}
+	};
+
 	return (
 		<div className={styles['voting-container']}>
 			<div className={styles['voting-body']}>
@@ -44,15 +56,19 @@ function App() {
 						icon={<ThumbsUp />}
 						name='like'
 						handleOnClick={handleOnClick}
+						handleOnKeyPress={handleOnKeyPress}
 						ariaLabel='like article'
 						ariaPressed={isLiked}
+						btnRef={likeBtn}
 					/>
 					<VotingBtn
 						icon={<ThumbsDown />}
 						name='dislike'
 						handleOnClick={handleOnClick}
+						handleOnKeyPress={handleOnKeyPress}
 						ariaLabel='dislike article'
 						ariaPressed={isDisliked}
+						btnRef={dislikeBtn}
 					/>
 				</div>
 				<p className={styles.muted}>
